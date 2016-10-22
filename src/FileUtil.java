@@ -13,19 +13,22 @@ public class FileUtil {
     public FileUtil(String path) {
         try {
             reader = new BufferedReader(new FileReader(path));
+            buffer = new StringBuffer();
+
             File file = new File("output.txt");
             if (!file.exists()) {
                 file.createNewFile();
             }
-
             writer = new BufferedWriter(new FileWriter(file));
-
-            buffer = new StringBuffer();
         } catch (IOException e) {
             System.out.println("Can't find the file!");
         }
     }
 
+    /**
+     * 读取文件内容到缓存
+     * @return
+     */
     public StringBuffer read() {
         String temp = "";
         try {

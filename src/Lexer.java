@@ -49,10 +49,10 @@ public class Lexer {
                     } else {
                         state = State.STATE0;
                         if(Type.isKeyword(word.trim())) {
-                            System.out.println("(KEYWORD, "+word.trim()+")");
+                            //System.out.println("(KEYWORD, "+word.trim()+")");
                             fileUtil.write("KEYWORD",word);
                         } else {
-                            System.out.println("(ID, "+word.trim()+")");
+                            //System.out.println("(ID, "+word.trim()+")");
                             fileUtil.write("ID",word);
                         }
                         word = "";
@@ -63,10 +63,13 @@ public class Lexer {
                     if(Type.isDigit(ch) || ch=='.') {
                         word +=ch;
                     } else if(Type.isLetter(ch)) {
+                        /**
+                         * 数字开头后面不允许出现字母,异常报错
+                         */
                         System.err.println("Error! Letter cannot appear after digit");
                     } else {
                         state = State.STATE0;
-                        System.out.println("(NUMBER, "+word.trim()+")");
+                        //System.out.println("(NUMBER, "+word.trim()+")");
                         fileUtil.write("NUMBER",word);
                         word = "";
                         i--;
@@ -79,7 +82,7 @@ public class Lexer {
                         word = temp;
                     } else {
                         state = State.STATE0;
-                        System.out.println("(OPERATOR, "+word.trim()+")");
+                        //System.out.println("(OPERATOR, "+word.trim()+")");
                         fileUtil.write("OPERATOR",word);
                         word = "";
                         i--;
@@ -87,7 +90,7 @@ public class Lexer {
                     break;
                 case STATE4:
                     state = State.STATE0;
-                    System.out.println("(SEPARATOR, "+word.trim()+")");
+                    //System.out.println("(SEPARATOR, "+word.trim()+")");
                     fileUtil.write("SEPARATOR",word);
                     word = "";
                     i--;

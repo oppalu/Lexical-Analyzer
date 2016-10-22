@@ -1,5 +1,6 @@
 public class test {
     public void add() {
-        System.out.print("Hello");
+        int a = 10;
+        a += 10;
     }
 }
